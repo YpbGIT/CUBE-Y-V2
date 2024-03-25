@@ -10,23 +10,14 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Charger les images pour chaque face
-const textureLoader = new THREE.TextureLoader();
-const texture1 = textureLoader.load('face1.png');
-const texture2 = textureLoader.load('face2.png');
-const texture3 = textureLoader.load('face3.png');
-const texture4 = textureLoader.load('face4.png');
-const texture5 = textureLoader.load('face5.png');
-const texture6 = textureLoader.load('face6.png');
-
-// Créer des matériaux avec des textures pour chaque face
+// Créer des matériaux avec des couleurs pour chaque face
 const materials = [
-    new THREE.MeshBasicMaterial({ map: texture1 }),
-    new THREE.MeshBasicMaterial({ map: texture2 }),
-    new THREE.MeshBasicMaterial({ map: texture3 }),
-    new THREE.MeshBasicMaterial({ map: texture4 }),
-    new THREE.MeshBasicMaterial({ map: texture5 }),
-    new THREE.MeshBasicMaterial({ map: texture6 })
+    new THREE.MeshBasicMaterial({ color: 0xff0000 }), // Rouge
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Vert
+    new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Bleu
+    new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Jaune
+    new THREE.MeshBasicMaterial({ color: 0xff00ff }), // Magenta
+    new THREE.MeshBasicMaterial({ color: 0x00ffff })  // Cyan
 ];
 
 // Créer la géométrie du cube
@@ -35,6 +26,9 @@ const geometry = new THREE.BoxGeometry();
 // Créer le cube avec les matériaux pour chaque face
 const cube = new THREE.Mesh(geometry, materials);
 scene.add(cube);
+
+// Ajuster la taille du cube
+cube.scale.set(2, 2, 2); // Doubler la taille du cube dans toutes les dimensions
 
 // Gestion du redimensionnement de la fenêtre
 window.addEventListener('resize', () => {
