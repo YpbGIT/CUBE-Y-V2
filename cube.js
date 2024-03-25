@@ -39,6 +39,54 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
+// Gestion de la souris pour la rotation du cube
+let isDragging = false;
+let previousMousePosition = {
+    x: 0,
+    y: 0
+};
+
+function onMouseMove(event) {
+    const deltaMove = {
+        x: event.clientX - previousMousePosition.x,
+        y: event.clientY - previousMousePosition.y
+    };
+
+    if (isDragging) {
+        const deltaRotationQuaternion = new THREE.Quaternion()
+            .setFromEuler(new THREE.Euler(
+                toRadians(deltaMove.y * 0.5),
+                toRadians(deltaMove.x * 0.5),
+                0,
+                'XYZ'
+            ));
+
+        cube.quaternion.multiplyQuaternions(deltaRotationQuaternion, cube.quaternion);
+    }
+
+    previousMousePosition = {
+        x: event.clientX,
+        y: event.clientY
+    };
+}
+
+function onMouseDown(event) {
+    isDragging = true;
+}
+
+function onMouseUp(event) {
+    isDragging = false;
+}
+
+function toRadians(degrees) {
+    return degrees * (Math.PI / 180);
+}
+
+// Ajouter les écouteurs d'événements de la souris
+document.addEventListener('mousemove', onMouseMove, false);
+document.addEventListener('mousedown', onMouseDown, false);
+document.addEventListener('mouseup', onMouseUp, false);
+
 // Fonction de rendu
 function animate() {
     requestAnimationFrame(animate);
