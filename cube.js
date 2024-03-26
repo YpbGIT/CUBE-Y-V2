@@ -38,41 +38,6 @@ scene.add(cube);
 // Ajuster la taille du cube
 cube.scale.set(2, 2, 2); // Doubler la taille du cube dans toutes les dimensions
 
-// Gestion de l'événement de clic sur une face du cube
-function onClick(event) {
-    const faceIndex = event.target.userData.faceIndex; // Récupérer l'index de la face cliquée
-    let link; // Variable pour stocker le lien correspondant à la face cliquée
-
-    // Déterminer le lien correspondant à la face cliquée en fonction de son index
-    switch (faceIndex) {
-        case 0:
-            link = "https://docs.google.com/document/d/1Jm8xDaO-ug5mJjd80_AtxVfbW34VrpgbbZk17uggI6E/edit?usp=drive_link";
-            break;
-        case 1:
-            link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link";
-            break;
-        case 3:
-            link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link";
-            break;
-        case 4:
-            link = "https://docs.google.com/document/d/1JEiMllBYAB7V8p-OHZQMotODQyS4I9Pvp7oge1YSZJA/edit?usp=drive_link";
-            break;
-        default:
-            // Aucune action si la face cliquée n'a pas de lien associé
-            return;
-    }
-
-    // Ouvrir le lien dans un nouvel onglet
-    window.open(link, "_blank");
-}
-
-// Ajouter des gestionnaires d'événements de clic pour chaque face du cube
-cube.children.forEach((face, index) => {
-    face.userData.faceIndex = index; // Stocker l'index de la face dans les données utilisateur
-    face.cursor = "pointer"; // Changer le curseur pour indiquer que la face est cliquable
-    face.on("click", onClick); // Ajouter le gestionnaire d'événements de clic
-});
-
 // Gestion du redimensionnement de la fenêtre
 window.addEventListener('resize', () => {
     const width = window.innerWidth;
@@ -81,6 +46,54 @@ window.addEventListener('resize', () => {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
+
+// Gestion de la souris pour la rotation du cube (non modifié)
+let isDragging = false;
+let previousMousePosition = {
+    x: 0,
+    y: 0
+};
+
+function onMouseMove(event) {
+    const deltaMove = {
+        x: event.clientX - previousMousePosition.x,
+        y: event.clientY - previousMousePosition.y
+    };
+
+    if (isDragging) {
+        const deltaRotationQuaternion = new THREE.Quaternion()
+            .setFromEuler(new THREE.Euler(
+                toRadians(deltaMove.y * 0.5),
+                toRadians(deltaMove.x * 0.5),
+                0,
+                'XYZ'
+            ));
+
+        cube.quaternion.multiplyQuaternions(deltaRotationQuaternion, cube.quaternion);
+    }
+
+    previousMousePosition = {
+        x: event.clientX,
+        y: event.clientY
+    };
+}
+
+function onMouseDown(event) {
+    isDragging = true;
+}
+
+function onMouseUp(event) {
+    isDragging = false;
+}
+
+function toRadians(degrees) {
+    return degrees * (Math.PI / 180);
+}
+
+// Ajouter les écouteurs d'événements de la souris
+document.addEventListener('mousemove', onMouseMove, false);
+document.addEventListener('mousedown', onMouseDown, false);
+document.addEventListener('mouseup', onMouseUp, false);
 
 // Fonction de rendu (non modifié)
 function animate() {
