@@ -38,7 +38,7 @@ scene.add(cube);
 // Ajuster la taille du cube
 cube.scale.set(2, 2, 2); // Doubler la taille du cube dans toutes les dimensions
 
-// Gestion de la souris pour la rotation du cube
+// Gestion de la souris pour la rotation et le zoom du cube
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 
@@ -56,8 +56,6 @@ function onMouseMove(event) {
 function onMouseDown(event) {
     if (event.button === 0) {
         isDragging = true;
-    } else if (event.button === 2) { // Click droit
-        onClick(event);
     }
 }
 
@@ -65,6 +63,11 @@ function onMouseUp(event) {
     if (event.button === 0) {
         isDragging = false;
     }
+}
+
+function onMouseWheel(event) {
+    event.preventDefault();
+    camera.position.z += event.deltaY * 0.01;
 }
 
 // Gestion de l'événement de clic sur une face du cube
@@ -75,16 +78,22 @@ function onClick(event) {
         let link;
         switch (faceIndex) {
             case 0:
-                link = "https://docs.google.com/document/d/1Jm8xDaO-ug5mJjd80_AtxVfbW34VrpgbbZk17uggI6E/edit?usp=drive_link";
+                link = "https://docs.google.com/document/d/1Jm8xDaO-ug5mJjd80_AtxVfbW34VrpgbbZk17uggI6E/edit?usp=drive_link"; // Face 1
                 break;
             case 1:
-                link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link";
+                link = "Lien de la face 2";
+                break;
+            case 2:
+                link = "Lien de la face 3";
                 break;
             case 3:
-                link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link";
+                link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Face 4
                 break;
             case 4:
-                link = "https://docs.google.com/document/d/1JEiMllBYAB7V8p-OHZQMotODQyS4I9Pvp7oge1YSZJA/edit?usp=drive_link";
+                link = "https://docs.google.com/document/d/1JEiMllBYAB7V8p-OHZQMotODQyS4I9Pvp7oge1YSZJA/edit?usp=drive_link"; // Face 5
+                break;
+            case 5:
+                link = "Lien de la face 6";
                 break;
             default:
                 return;
@@ -109,6 +118,7 @@ function toRadians(degrees) {
 document.addEventListener('mousemove', onMouseMove, false);
 document.addEventListener('mousedown', onMouseDown, false);
 document.addEventListener('mouseup', onMouseUp, false);
+document.addEventListener('wheel', onMouseWheel, false);
 document.addEventListener('contextmenu', function (event) { event.preventDefault(); }, false); // Désactiver le menu contextuel
 
 // Fonction de rendu (non modifié)
