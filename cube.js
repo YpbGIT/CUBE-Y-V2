@@ -38,6 +38,35 @@ scene.add(cube);
 // Ajuster la taille du cube
 cube.scale.set(2, 2, 2); // Doubler la taille du cube dans toutes les dimensions
 
+// Gestion de la souris pour la rotation du cube
+let isDragging = false;
+let previousMousePosition = { x: 0, y: 0 };
+
+function onMouseMove(event) {
+    const deltaMove = { x: event.clientX - previousMousePosition.x, y: event.clientY - previousMousePosition.y };
+    if (isDragging) {
+        const deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(
+            toRadians(deltaMove.y * 0.5), toRadians(deltaMove.x * 0.5), 0, 'XYZ'
+        ));
+        cube.quaternion.multiplyQuaternions(deltaRotationQuaternion, cube.quaternion);
+    }
+    previousMousePosition = { x: event.clientX, y: event.clientY };
+}
+
+function onMouseDown(event) {
+    if (event.button === 0) {
+        isDragging = true;
+    } else if (event.button === 2) { // Click droit
+        onClick(event);
+    }
+}
+
+function onMouseUp(event) {
+    if (event.button === 0) {
+        isDragging = false;
+    }
+}
+
 // Gestion de l'événement de clic sur une face du cube
 function onClick(event) {
     const intersects = getIntersects(event.clientX, event.clientY);
@@ -72,8 +101,15 @@ function getIntersects(x, y) {
     return raycaster.intersectObject(cube);
 }
 
+function toRadians(degrees) {
+    return degrees * (Math.PI / 180);
+}
+
 // Ajouter les écouteurs d'événements de la souris
-document.addEventListener('mousedown', onClick, false);
+document.addEventListener('mousemove', onMouseMove, false);
+document.addEventListener('mousedown', onMouseDown, false);
+document.addEventListener('mouseup', onMouseUp, false);
+document.addEventListener('contextmenu', function (event) { event.preventDefault(); }, false); // Désactiver le menu contextuel
 
 // Fonction de rendu (non modifié)
 function animate() {
