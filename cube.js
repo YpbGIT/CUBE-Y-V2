@@ -69,7 +69,20 @@ function onMouseUp(event) {
 
 function onMouseWheel(event) {
     event.preventDefault();
+
+    // Définir les limites de zoom
+    const minZoom = 3;
+    const maxZoom = 10;
+
+    // Mettre à jour la position de la caméra en fonction du mouvement de la roulette de la souris
     camera.position.z += event.deltaY * 0.01;
+
+    // Vérifier si la position de la caméra dépasse les limites de zoom
+    if (camera.position.z < minZoom) {
+        camera.position.z = minZoom;
+    } else if (camera.position.z > maxZoom) {
+        camera.position.z = maxZoom;
+    }
 }
 
 // Gestion de l'événement de clic sur une face du cube
