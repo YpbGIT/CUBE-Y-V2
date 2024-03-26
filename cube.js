@@ -56,6 +56,8 @@ function onMouseMove(event) {
 function onMouseDown(event) {
     if (event.button === 0) {
         isDragging = true;
+    } else if (event.button === 2) { // Click droit
+        onClick(event);
     }
 }
 
