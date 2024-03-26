@@ -10,21 +10,21 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Charger la texture
-const texture = new THREE.TextureLoader().load('face1.png');
-
-// Créer un matériau avec la texture
-const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
-
-// Créer des matériaux avec des couleurs pour chaque face
-const materials = [
-    materialWithTexture,                             // Texture sur la première face
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Vert
-    new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Bleu
-    new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Jaune
-    new THREE.MeshBasicMaterial({ color: 0xff00ff }), // Magenta
-    new THREE.MeshBasicMaterial({ color: 0x00ffff })  // Cyan
+// Liste des chemins des fichiers PNG pour chaque face du cube
+const textureFiles = [
+    'face1.png',
+    'face2.png',
+    'face3.png',
+    'face4.png',
+    'face5.png',
+    'face6.png'
 ];
+
+// Créer des matériaux avec des textures pour chaque face
+const materials = textureFiles.map(file => {
+    const texture = new THREE.TextureLoader().load(file);
+    return new THREE.MeshBasicMaterial({ map: texture });
+});
 
 // Créer la géométrie du cube
 const geometry = new THREE.BoxGeometry();
