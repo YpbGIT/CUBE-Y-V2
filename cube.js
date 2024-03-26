@@ -20,6 +20,15 @@ const materials = [
     new THREE.MeshBasicMaterial({ color: 0x00ffff })  // Cyan
 ];
 
+// Charger la texture
+const texture = new THREE.TextureLoader().load('face1.png');
+
+// Créer un matériau avec la texture
+const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
+
+// Remplacer le matériau de la première face du cube par le matériau avec la texture
+materials[0] = materialWithTexture;
+
 // Créer la géométrie du cube
 const geometry = new THREE.BoxGeometry();
 
