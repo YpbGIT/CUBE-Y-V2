@@ -10,21 +10,23 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Liste des chemins des fichiers PNG pour chaque face du cube
-const textureFiles = [
-    'face1.png',
-    'face2.png',
-    'face3.png',
-    'face4.png',
-    'face5.png',
-    'face6.png'
-];
+// Charger les textures
+const texture1 = new THREE.TextureLoader().load('face1.png');
+const texture2 = new THREE.TextureLoader().load('face2.png');
+const texture3 = new THREE.TextureLoader().load('face3.png');
+const texture4 = new THREE.TextureLoader().load('face4.png');
+const texture5 = new THREE.TextureLoader().load('face5.png');
+const texture6 = new THREE.TextureLoader().load('face6.png');
 
-// Créer des matériaux avec des textures pour chaque face
-const materials = textureFiles.map(file => {
-    const texture = new THREE.TextureLoader().load(file);
-    return new THREE.MeshBasicMaterial({ map: texture });
-});
+// Créer des matériaux pour chaque face avec les textures correspondantes
+const materials = [
+    new THREE.MeshBasicMaterial({ map: texture1 }), // Face 1 avec texture1
+    new THREE.MeshBasicMaterial({ map: texture2 }), // Face 2 avec texture2
+    new THREE.MeshBasicMaterial({ map: texture3 }), // Face 3 avec texture3
+    new THREE.MeshBasicMaterial({ map: texture4 }), // Face 4 avec texture4
+    new THREE.MeshBasicMaterial({ map: texture5 }), // Face 5 avec texture5
+    new THREE.MeshBasicMaterial({ map: texture6 })  // Face 6 avec texture6
+];
 
 // Créer la géométrie du cube
 const geometry = new THREE.BoxGeometry();
@@ -45,7 +47,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Gestion de la souris pour la rotation du cube
+// Gestion de la souris pour la rotation du cube (non modifié)
 let isDragging = false;
 let previousMousePosition = {
     x: 0,
@@ -93,7 +95,7 @@ document.addEventListener('mousemove', onMouseMove, false);
 document.addEventListener('mousedown', onMouseDown, false);
 document.addEventListener('mouseup', onMouseUp, false);
 
-// Fonction de rendu
+// Fonction de rendu (non modifié)
 function animate() {
     requestAnimationFrame(animate);
     cube.rotation.x += 0.005;
