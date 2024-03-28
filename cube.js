@@ -99,7 +99,7 @@ function onClick(event) {
                 link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link"; // Face 2
                 break;
             case 2:
-                link = ""; // Pas de lien pour la face 3
+                link = "Lien de la face 3"; // Face 3
                 break;
             case 3:
                 link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Face 4
@@ -108,16 +108,12 @@ function onClick(event) {
                 link = "https://docs.google.com/document/d/1JEiMllBYAB7V8p-OHZQMotODQyS4I9Pvp7oge1YSZJA/edit?usp=drive_link"; // Face 5
                 break;
             case 5:
-                link = ""; // Pas de lien pour la face 6
+                link = "Lien de la face 6"; // Face 6
                 break;
             default:
                 return;
         }
-        if (link) {
-            window.open(link, "_blank");
-        } else {
-            console.log("Pas de lien");
-        }
+        window.open(link, "_blank");
     }
 }
 
