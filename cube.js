@@ -96,10 +96,10 @@ function onClick(event) {
                 link = "https://docs.google.com/document/d/1Jm8xDaO-ug5mJjd80_AtxVfbW34VrpgbbZk17uggI6E/edit?usp=drive_link"; // Face 1
                 break;
             case 1:
-                link = "Lien de la face 2";
+                link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link"; // Face 2
                 break;
             case 2:
-                link = "Lien de la face 3";
+                link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Face 3
                 break;
             case 3:
                 link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Face 4
