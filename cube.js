@@ -89,7 +89,7 @@ function onMouseWheel(event) {
 function onClick(event) {
     const intersects = getIntersects(event.clientX, event.clientY);
     if (intersects.length > 0) {
-        const faceIndex = intersects[0].faceIndex;
+        const faceIndex = intersects[0].face.materialIndex; // Utiliser materialIndex pour obtenir l'indice du matériau
         let link;
         switch (faceIndex) {
             case 0:
