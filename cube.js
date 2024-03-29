@@ -93,10 +93,16 @@ function onClick(event) {
         let link;
         switch (faceIndex) {
             case 0:
-                link = "https://example.com/link1"; // Lien pour Face 1 (face1.png)
+                link = "https://docs.google.com/document/d/1Jm8xDaO-ug5mJjd80_AtxVfbW34VrpgbbZk17uggI6E/edit?usp=drive_link"; // Lien pour Face 1 (face1.png)
                 break;
             case 1:
-                link = "https://example.com/link2"; // Lien pour Face 2 (face2.png)
+                link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link"; // Lien pour Face 2 (face2.png)
+                break;
+            case 3:
+                link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Lien pour Face 4 (face4.png)
+                break;
+            case 4:
+                link = "https://docs.google.com/document/d/1JEiMllBYAB7V8p-OHZQMotODQyS4I9Pvp7oge1YSZJA/edit?usp=drive_link"; // Lien pour Face 5 (face5.png)
                 break;
             // Laisser les autres cas sans lien hypertexte
             default:
