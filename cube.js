@@ -99,14 +99,14 @@ function onClick(event) {
                 link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link"; // Face 2
                 break;
             case 2:
-                link = "Lien de la face 3"; // Face 3
-                break;
+                // Aucune action pour Face 3
+                return;
             case 3:
                 link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Face 4
                 break;
             case 4:
-                link = "https://docs.google.com/document/d/1JEiMllBYAB7V8p-OHZQMotODQyS4I9Pvp7oge1YSZJA/edit?usp=drive_link"; // Face 5
-                break;
+                // Aucune action pour Face 5
+                return;
             case 5:
                 link = "Lien de la face 6"; // Face 6
                 break;
