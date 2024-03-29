@@ -93,23 +93,12 @@ function onClick(event) {
         let link;
         switch (faceIndex) {
             case 0:
-                link = "https://docs.google.com/document/d/1Jm8xDaO-ug5mJjd80_AtxVfbW34VrpgbbZk17uggI6E/edit?usp=drive_link"; // Face 1
+                link = "https://example.com/link1"; // Lien pour Face 1 (face1.png)
                 break;
             case 1:
-                link = "https://docs.google.com/document/d/1N7Tvqwb08Dm8n8uIdzszmKlDtrLxQb9tIAgQ4718HiE/edit?usp=drive_link"; // Face 2
+                link = "https://example.com/link2"; // Lien pour Face 2 (face2.png)
                 break;
-            case 2:
-                // Aucune action pour Face 3
-                return;
-            case 3:
-                link = "https://docs.google.com/document/d/1-1NHKdxr2bbCupoXDKOIg-6yjj-UJ_hKN3YdW4TXEx0/edit?usp=drive_link"; // Face 4
-                break;
-            case 4:
-                // Aucune action pour Face 5
-                return;
-            case 5:
-                link = "Lien de la face 6"; // Face 6
-                break;
+            // Laisser les autres cas sans lien hypertexte
             default:
                 return;
         }
